@@ -131,6 +131,16 @@ def make_app(app_config):
     return factory(app_config)
 
 
+def paste_make_app(global_config, **local_config):
+    """Make an application object, PasteDeploy style.
+
+    This is a compatibility shim for to adapt the baseplate app entrypoint to
+    PasteDeploy-style so tools like Pyramid's pshell work.
+
+    """
+    return make_app(local_config)
+
+
 def register_signal_handlers():
     def _handle_debug_signal(signal_number, frame):
         if not frame:
